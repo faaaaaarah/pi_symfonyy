@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des bornes{% endblock %}
+
+{% block body %}
+    <h1>Liste des bornes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Etat</th>
+                <th>Adresse</th>
+                <th>Emplacement</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for borne in bornes %}
+            <tr>
+                <td>{{ borne.description }}</td>
+                <td>{{ borne.etat }}</td>
+                <td>{{ borne.adresse }}</td>
+                <td>{{ borne.emplacement }}</td>
+                <td>
+                    {% if borne.filePath %}
+                        <img src="{{ asset('uploads/' ~ borne.filePath) }}" alt="Borne Image" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_bornes_show', {'id': borne.id}) }}">Show</a>
+                    <a href="{{ path('app_bornes_edit', {'id': borne.id}) }}">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bornes_new') }}">Create new</a>
+{% endblock %}

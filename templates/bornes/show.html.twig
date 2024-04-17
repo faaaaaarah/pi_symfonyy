@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bornes{% endblock %}
+
+{% block body %}
+    <h1>Bornes</h1>
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Description</th>
+                <td>{{ borne.description }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ borne.etat }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ borne.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Emplacement</th>
+                <td>{{ borne.emplacement }}</td>
+            </tr>
+            <tr>
+                <th>FilePath</th>
+                <td>{{ borne.filePath }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bornes_index') }}">back to list</a>
+
+    <a href="{{ path('app_bornes_edit', {'id': borne.id}) }}">edit</a>
+
+    {{ include('bornes/_delete_form.html.twig') }}
+{% endblock %}
